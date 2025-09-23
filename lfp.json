@@ -1,0 +1,161 @@
+{
+  "info": {
+    "name": "API Tests",
+    "_postman_id": "e8c9b9c0-9a22-4d0e-8e5b-34bcb19f5c9f",
+    "description": "Коллекция тестовых запросов к локальному API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET /documents - без аутентифікації",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/documents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["documents"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /employees - user1 (403)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/employees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["employees"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /documents - user1 (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/documents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["documents"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /employees - admin1 (200)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/employees",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["employees"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /documents - создать документ (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Test Doc\",\n  \"content\": \"...\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/documents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["documents"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /documents - ошибка валидации (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-Login", "value": "user1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"...\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/documents",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["documents"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE /documents/1 - admin1 (204)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/documents/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["documents", "1"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /non-existent - admin1 (404)",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "X-Login", "value": "admin1" },
+          { "key": "X-Password", "value": "password123" }
+        ],
+        "url": {
+          "raw": "http://localhost:3000/non-existent",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["non-existent"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
